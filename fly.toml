@@ -1,6 +1,6 @@
-# fly.toml file generated for white-brook-26 on 2022-10-13T23:50:21+03:00
+# fly.toml file generated for cool-waterfall-5955 on 2022-10-14T00:12:21+03:00
 
-app = "white-brook-26"
+app = "cool-waterfall-5955"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
