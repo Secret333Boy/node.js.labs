@@ -16,9 +16,9 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --ignore-path .gitignore && prettier . --ignore-path .gitignore -c",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --ignore-path .gitignore --fix && prettier . --ignore-path .gitignore --write",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test": "npm run lint:fix && jest --passWithNoTests",
+    "test:watch": "jest --watch --passWithNoTests",
+    "test:cov": "jest --coverage --passWithNoTests",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
