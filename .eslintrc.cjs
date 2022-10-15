@@ -3,17 +3,20 @@ module.exports = {
   env: {
     es2022: true,
   },
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'metarhia',
     'plugin:sonarjs/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['prettier', 'sonarjs'],
+  plugins: ['prettier', 'sonarjs', '@typescript-eslint'],
   rules: {
     'arrow-parens': ['error', 'always'],
     'comma-dangle': 'off',
