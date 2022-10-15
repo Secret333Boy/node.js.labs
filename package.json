@@ -9,7 +9,8 @@
     "lint": "eslint --max-warnings=0 --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore",
     "lint-fix": "eslint --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore --fix",
     "format": "prettier --ignore-path .gitignore -c \"**/*.js\" \"**/*.jsx\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" --no-error-on-unmatched-pattern",
-    "format-fix": " prettier --ignore-path .gitignore --write \"**/*.js\" \"**/*.jsx\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" --no-error-on-unmatched-pattern"
+    "format-fix": " prettier --ignore-path .gitignore --write \"**/*.js\" \"**/*.jsx\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" --no-error-on-unmatched-pattern",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-sonarjs": "^0.16.0",
+    "husky": "^8.0.1",
     "prettier": "^2.7.1"
   }
 }
