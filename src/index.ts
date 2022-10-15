@@ -1,6 +1,6 @@
 import http, { IncomingMessage, ServerResponse } from 'http';
 
-const requestListener = function (_req: IncomingMessage, res: ServerResponse) {
+const requestListener = (_req: IncomingMessage, res: ServerResponse) => {
   res.writeHead(200);
   res.end(JSON.stringify({ message: 'pong' }));
 };
