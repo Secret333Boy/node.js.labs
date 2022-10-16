@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node build/index.js",
     "test": "npm run lint && npm run format",
+    "deploy": "flyctl deploy",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
     "build": "npx tsc",
     "lint": "eslint --max-warnings=0 --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore --no-error-on-unmatched-pattern",
