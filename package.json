@@ -7,7 +7,6 @@
   "scripts": {
     "start": "node build/index.js",
     "test": "echo 0",
-    "test:cov": "npm run test",
     "deploy": "flyctl deploy",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
     "build": "npx tsc",
