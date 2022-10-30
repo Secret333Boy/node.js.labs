@@ -1,5 +1,5 @@
-import Router, { HTTP_METHODS } from '../lib/Router.js';
-import send from '../lib/send.js';
+import Router, { HTTP_METHODS } from '../lib/Router';
+import send from '../lib/send';
 
 const router = new Router();
 

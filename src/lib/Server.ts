@@ -1,5 +1,5 @@
 import http, { Server } from 'http';
-import Router from './Router.js';
+import Router from './Router';
 
 export default class {
   private httpServer: Server;
