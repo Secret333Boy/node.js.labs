@@ -3,15 +3,15 @@ import { URL } from 'url';
 import send from './send';
 
 export enum HTTP_METHODS {
-  Get = 'GET',
-  Post = 'POST',
-  Put = 'PUT',
-  Delete = 'DELETE',
-  Patch = 'PATCH',
-  Options = 'OPTIONS',
-  Head = 'HEAD',
-  Connect = 'CONNECT',
-  Trace = 'TRACE',
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  PATCH = 'PATCH',
+  OPTIONS = 'OPTIONS',
+  HEAD = 'HEAD',
+  CONNECT = 'CONNECT',
+  TRACE = 'TRACE',
 }
 
 type Handler = (
@@ -24,7 +24,7 @@ export default class Router {
 
   async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const path = new URL(req.url || '/', `http://${req.headers.host}`).pathname;
-    const method = req.method || HTTP_METHODS.Get;
+    const method = req.method || HTTP_METHODS.GET;
 
     const routeHandlers = this.handlers[path]?.[method];
     if (!routeHandlers || routeHandlers.length === 0) {
@@ -47,38 +47,38 @@ export default class Router {
   }
 
   get(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Get, path, ...handlers);
+    this.add(HTTP_METHODS.GET, path, ...handlers);
   }
 
   post(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Post, path, ...handlers);
+    this.add(HTTP_METHODS.POST, path, ...handlers);
   }
 
   put(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Put, path, ...handlers);
+    this.add(HTTP_METHODS.PUT, path, ...handlers);
   }
 
   delete(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Delete, path, ...handlers);
+    this.add(HTTP_METHODS.DELETE, path, ...handlers);
   }
 
   options(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Options, path, ...handlers);
+    this.add(HTTP_METHODS.OPTIONS, path, ...handlers);
   }
 
   patch(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Patch, path, ...handlers);
+    this.add(HTTP_METHODS.PATCH, path, ...handlers);
   }
 
   trace(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Trace, path, ...handlers);
+    this.add(HTTP_METHODS.TRACE, path, ...handlers);
   }
 
   head(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Head, path, ...handlers);
+    this.add(HTTP_METHODS.HEAD, path, ...handlers);
   }
 
   connect(path = '/', ...handlers: Handler[]) {
-    this.add(HTTP_METHODS.Connect, path, ...handlers);
+    this.add(HTTP_METHODS.CONNECT, path, ...handlers);
   }
 }
