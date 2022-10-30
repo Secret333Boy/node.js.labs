@@ -40,6 +40,6 @@ export default class Router {
         ...(this.handlers[path] || {}),
         [method]: [...handlers],
       };
-    else this.handlers[path][method].concat(handlers);
+    else this.handlers[path][method].push(...handlers);
   }
 }
