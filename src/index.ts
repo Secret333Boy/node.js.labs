@@ -1,5 +1,5 @@
-import Server from './lib/Server.js';
-import router from './routes/index.js';
+import Server from './lib/Server';
+import router from './routes/index';
 
 const PORT = process.env.PORT || 5000;
 

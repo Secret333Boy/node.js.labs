@@ -4,6 +4,13 @@ module.exports = {
     es2022: true,
     node: true,
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
+  },
   parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
@@ -24,8 +31,6 @@ module.exports = {
     'handle-callback-err': 'off',
     'consistent-return': 'off',
     'sonarjs/no-duplicate-string': 'off',
-    'no-unused-vars': 'warn',
-    'import/no-unresolved': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
   },
 };
