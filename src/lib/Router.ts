@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { IncomingMessage, ServerResponse } from 'http';
 import { URL } from 'url';
 import send from './send';

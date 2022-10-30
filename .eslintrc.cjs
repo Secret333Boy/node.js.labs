@@ -31,7 +31,6 @@ module.exports = {
     'handle-callback-err': 'off',
     'consistent-return': 'off',
     'sonarjs/no-duplicate-string': 'off',
-    'no-unused-vars': 'warn',
     '@typescript-eslint/no-explicit-any': 'off',
   },
 };
