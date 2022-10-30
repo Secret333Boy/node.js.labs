@@ -1,13 +1,10 @@
-import http, { IncomingMessage, ServerResponse } from 'http';
+import Server from './lib/Server.js';
+import router from './routes/index.js';
 
 const PORT = process.env.PORT || 5000;
 
-const requestListener = (_req: IncomingMessage, res: ServerResponse) => {
-  res.writeHead(200);
-  res.end(JSON.stringify({ message: 'pong' }));
-};
+const server = new Server();
 
-const server = http.createServer(requestListener);
-server.listen(PORT, () => {
+server.use(router).listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
