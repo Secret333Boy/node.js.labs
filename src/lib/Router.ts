@@ -59,7 +59,10 @@ export default class Router {
     }
   }
 
-  private async parsePayload(req: IncomingMessage): Promise<unknown> {
+  private async parsePayload(
+    req: IncomingMessage,
+    fallback: any = {}
+  ): Promise<unknown> {
     if (!req.headers['content-type']) return {};
 
     const contentType = req.headers['content-type'].split(';')[0];
@@ -69,7 +72,9 @@ export default class Router {
       rawPayload += chunk;
     }
 
-    return this.payloadParsers[contentType](rawPayload);
+    if (this.payloadParsers[contentType])
+      return this.payloadParsers[contentType](rawPayload, fallback);
+    return fallback;
   }
 
   add(method: HTTP_METHODS, path = '/', ...handlers: Handler[]) {
