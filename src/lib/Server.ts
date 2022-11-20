@@ -27,6 +27,10 @@ export default class {
         this.connections.delete(socket);
       });
     });
+
+    this.httpServer.on('clientError', (err, socket) => {
+      socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+    });
     return this;
   }
 

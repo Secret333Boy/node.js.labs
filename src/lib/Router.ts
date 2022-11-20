@@ -1,4 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
+import { XMLParser } from 'fast-xml-parser/src/fxp';
+
 import { URL } from 'url';
 import send from './send';
 
@@ -16,10 +18,28 @@ export enum HTTP_METHODS {
 
 type Handler = (
   req: IncomingMessage,
-  res: ServerResponse
+  res: ServerResponse,
+  payload?: unknown
 ) => void | Promise<void>;
 
 export default class Router {
+  private payloadParsers: {
+    [key: string]: (data: string, fallback?: any) => any;
+  } = {
+    'application/json': (jsonString: string, fallback: any = {}) => {
+      try {
+        return JSON.parse(jsonString);
+      } catch (error) {
+        return fallback;
+      }
+    },
+    'application/xml': (xmlString: string) => {
+      const parser = new XMLParser();
+      return parser.parse(xmlString);
+    },
+    'text/plain': (text: string) => text,
+  };
+
   private handlers: { [path: string]: { [method: string]: Handler[] } } = {};
 
   async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
@@ -32,9 +52,24 @@ export default class Router {
       return;
     }
 
+    const payload = await this.parsePayload(req);
+
     for (const handler of this.handlers[path][method]) {
-      await handler(req, res);
+      await handler(req, res, payload);
     }
+  }
+
+  private async parsePayload(req: IncomingMessage): Promise<unknown> {
+    if (!req.headers['content-type']) return {};
+
+    const contentType = req.headers['content-type'].split(';')[0];
+
+    let rawPayload = '';
+    for await (const chunk of req) {
+      rawPayload += chunk;
+    }
+
+    return this.payloadParsers[contentType](rawPayload);
   }
 
   add(method: HTTP_METHODS, path = '/', ...handlers: Handler[]) {

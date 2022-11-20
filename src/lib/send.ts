@@ -1,12 +1,16 @@
 import { ServerResponse } from 'http';
 
 const formatResponse = {
-  json: (data: any) => ({
-    formattedData: JSON.stringify(data),
-    contentType: 'application/json',
-  }),
-  // xml: 'application/xml',
-  // formdata: 'multipart/form-data',
+  json: (data: unknown, fallback = {}) => {
+    const contentType = 'application/json';
+
+    try {
+      const formattedData = JSON.stringify(data);
+      return { formattedData, contentType };
+    } catch (error) {
+      return { formattedData: fallback, contentType };
+    }
+  },
 };
 
 export default function (

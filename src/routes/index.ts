@@ -11,4 +11,12 @@ router.get('/superping', (_req, res) => {
   send(res, { message: 'superpong' }, 'json');
 });
 
+router.post('/superping', (_req, res, payload) => {
+  send(res, { payload }, 'json');
+});
+
+router.get('/nested/route/supersuperping', (_req, res) => {
+  send(res, { message: 'Supersuperpong' }, 'json');
+});
+
 export default router;
