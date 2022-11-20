@@ -1,7 +1,7 @@
 import Server from './lib/Server';
 import router from './routes/index';
 
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT ?? '5000');
 
 const server = new Server();
 
@@ -19,10 +19,6 @@ const shutdown = async () => {
   await server.shutdown();
   process.exit(0);
 };
-
-process.on('SIGINT', async () => {
-  await shutdown();
-});
 
 process.on('SIGTERM', async () => {
   await shutdown();

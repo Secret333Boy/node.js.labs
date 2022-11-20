@@ -3,19 +3,19 @@ import send from '../lib/send';
 
 const router = new Router();
 
-router.add(HTTP_METHODS.GET, '/ping', (_req, res) => {
+router.add(HTTP_METHODS.GET, '/ping', async (_req, res) => {
   send(res, { message: 'pong' }, 'json');
 });
 
-router.get('/superping', (_req, res) => {
+router.get('/superping', async (_req, res) => {
   send(res, { message: 'superpong' }, 'json');
 });
 
-router.post('/superping', (_req, res, payload) => {
+router.post('/superping', async (_req, res, payload) => {
   send(res, { payload }, 'json');
 });
 
-router.get('/nested/route/supersuperping', (_req, res) => {
+router.get('/nested/route/supersuperping', async (_req, res) => {
   send(res, { message: 'Supersuperpong' }, 'json');
 });
 

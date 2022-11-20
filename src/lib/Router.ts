@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { XMLParser } from 'fast-xml-parser/src/fxp';
 
 import { URL } from 'url';
 import send from './send';
+import { jsonParser, textParser, xmlParser } from './requestParsers';
 
 export enum HTTP_METHODS {
   GET = 'GET',
@@ -20,24 +20,15 @@ type Handler = (
   req: IncomingMessage,
   res: ServerResponse,
   payload?: unknown
-) => void | Promise<void>;
+) => Promise<void>;
 
 export default class Router {
   private payloadParsers: {
-    [key: string]: (data: string, fallback?: any) => any;
+    [key: string]: (data: string, fallback?: unknown) => Promise<unknown>;
   } = {
-    'application/json': (jsonString: string, fallback: any = {}) => {
-      try {
-        return JSON.parse(jsonString);
-      } catch (error) {
-        return fallback;
-      }
-    },
-    'application/xml': (xmlString: string) => {
-      const parser = new XMLParser();
-      return parser.parse(xmlString);
-    },
-    'text/plain': (text: string) => text,
+    'application/json': jsonParser,
+    'application/xml': xmlParser,
+    'text/plain': textParser,
   };
 
   private handlers: { [path: string]: { [method: string]: Handler[] } } = {};
@@ -61,7 +52,7 @@ export default class Router {
 
   private async parsePayload(
     req: IncomingMessage,
-    fallback: any = {}
+    fallback: unknown = {}
   ): Promise<unknown> {
     if (!req.headers['content-type']) return {};
 
