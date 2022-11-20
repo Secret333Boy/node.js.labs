@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 import { URL } from 'url';
-import send from './send';
-import { jsonParser, textParser, xmlParser } from './requestParsers';
+import send from './send.js';
+import { jsonParser, textParser, xmlParser } from './requestParsers.js';
 
 export enum HTTP_METHODS {
   GET = 'GET',

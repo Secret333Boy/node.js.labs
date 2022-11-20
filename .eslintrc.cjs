@@ -5,9 +5,13 @@ module.exports = {
     node: true,
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts'],
+      typescript: {
+        alwaysTryTypes: true,
+        project: 'path/to/folder',
       },
     },
   },
@@ -18,13 +22,14 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
     'prettier',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['prettier', 'sonarjs', '@typescript-eslint'],
+  plugins: ['prettier', 'sonarjs', '@typescript-eslint', 'import'],
   rules: {
     'arrow-parens': ['error', 'always'],
     'comma-dangle': 'off',

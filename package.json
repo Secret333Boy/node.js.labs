@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "node labs",
   "main": "index.ts",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "node build/index.js",
     "test": "echo 0",
@@ -36,6 +36,8 @@
     "eslint": "^8.25.0",
     "eslint-config-metarhia": "^8.1.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-sonarjs": "^0.16.0",
     "husky": "^8.0.1",

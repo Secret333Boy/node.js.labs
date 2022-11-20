@@ -1,7 +1,7 @@
 import http, { Server } from 'http';
 import { Socket } from 'net';
-import Router from './Router';
-import send from './send';
+import Router from './Router.js';
+import send from './send.js';
 
 const UNAVAILABLE_MESSAGE = 'Service is unavailable';
 
